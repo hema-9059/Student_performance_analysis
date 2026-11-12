@@ -1,4 +1,4 @@
-// Module 3: Marks and Attendance Analysis
+// Module 1 Dashboard + Module 3 Marks and Attendance Analysis
 document.addEventListener("DOMContentLoaded", () => {
     const subjectList = document.getElementById("subjectList");
     const addSubjectBtn = document.getElementById("addSubjectBtn");
@@ -8,10 +8,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorBanner = document.getElementById("errorBanner");
     const resultsSection = document.getElementById("resultsSection");
 
+    // Dashboard sample data
+    const dashboardData = [
+        { name: "Group A", value: 81 },
+        { name: "Group B", value: 67 },
+        { name: "Group C", value: 74 },
+        { name: "Group D", value: 89 },
+        { name: "Group E", value: 58 }
+    ];
+
     // Evaluation constants
     const MIN_SUBJECT_PASS_MARK = 35;
     const MIN_ATTENDANCE_PERCENT = 75;
     const MIN_OVERALL_AVERAGE_PASS = 40;
+
+    initDashboard();
+
+    function initDashboard() {
+        const totalStudents = 240;
+        const averageMarks = 76.4;
+        const passPercentage = 82;
+        const failPercentage = 18;
+
+        document.getElementById("totalStudentsValue").textContent = totalStudents.toLocaleString();
+        document.getElementById("averageMarksValue").textContent = `${averageMarks.toFixed(1)}%`;
+        document.getElementById("passPercentageValue").textContent = `${passPercentage}%`;
+        document.getElementById("failPercentageValue").textContent = `${failPercentage}%`;
+
+        const barsContainer = document.getElementById("performanceBars");
+        barsContainer.innerHTML = dashboardData.map(item => `
+            <div class="bar-row">
+                <span>${item.name}</span>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: ${item.value}%"></div>
+                </div>
+                <strong>${item.value}%</strong>
+            </div>
+        `).join("");
+
+        const distributionDonut = document.getElementById("distributionDonut");
+        distributionDonut.style.background = `conic-gradient(#16a34a 0 ${passPercentage}%, #ef4444 ${passPercentage}% 100%)`;
+        document.getElementById("distributionLabel").textContent = `${passPercentage}%`;
+        document.getElementById("passLegendValue").textContent = `${passPercentage}%`;
+        document.getElementById("failLegendValue").textContent = `${failPercentage}%`;
+
+        const topStudents = [
+            { name: "Aisha Khan", score: "96%" },
+            { name: "Rohan Patel", score: "94%" },
+            { name: "Mia Chen", score: "92%" },
+            { name: "Daniel Lee", score: "90%" },
+            { name: "Sara Ahmed", score: "89%" }
+        ];
+
+        document.getElementById("topStudentsList").innerHTML = topStudents.map(student => `
+            <li><span>${student.name}</span><strong>${student.score}</strong></li>
+        `).join("");
+    }
 
     // Attach remove event listener to existing and future subject rows
     subjectList.addEventListener("click", (e) => {

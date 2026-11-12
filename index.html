@@ -4,14 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Performance Analysis - Module 3</title>
+    <title>Student Performance Analysis Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <header class="app-header">
-            <span class="badge">Module 3</span>
+            <span class="badge">Module 1</span>
+            <h1>Student Performance Dashboard</h1>
+            <p class="subtitle">Overview of class performance with key academic indicators and trend highlights.</p>
+        </header>
+
+        <main class="card dashboard-card">
+            <section class="dashboard-section">
+                <div class="dashboard-summary">
+                    <div class="stat-card accent-blue">
+                        <div class="stat-label">Total Students</div>
+                        <div class="stat-value" id="totalStudentsValue">0</div>
+                    </div>
+                    <div class="stat-card accent-green">
+                        <div class="stat-label">Average Marks</div>
+                        <div class="stat-value" id="averageMarksValue">0%</div>
+                    </div>
+                    <div class="stat-card accent-violet">
+                        <div class="stat-label">Pass Percentage</div>
+                        <div class="stat-value" id="passPercentageValue">0%</div>
+                    </div>
+                    <div class="stat-card accent-amber">
+                        <div class="stat-label">Fail Percentage</div>
+                        <div class="stat-value" id="failPercentageValue">0%</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-panels">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Performance Overview</h3>
+                        </div>
+                        <div id="performanceBars" class="performance-bars"></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Pass / Fail Distribution</h3>
+                        </div>
+                        <div class="distribution-wrap">
+                            <div class="donut-chart" id="distributionDonut">
+                                <div class="donut-center">
+                                    <strong id="distributionLabel">0%</strong>
+                                </div>
+                            </div>
+                            <div class="legend-list">
+                                <div class="legend-item">
+                                    <span class="legend-dot pass-dot"></span>
+                                    <span>Pass</span>
+                                    <strong id="passLegendValue">0%</strong>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot fail-dot"></span>
+                                    <span>Fail</span>
+                                    <strong id="failLegendValue">0%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel top-students-panel">
+                    <div class="panel-header">
+                        <h3>Top Performing Students</h3>
+                    </div>
+                    <ol id="topStudentsList" class="top-students-list"></ol>
+                </div>
+            </section>
+        </main>
+
+        <header class="app-header secondary-header">
+            <span class="badge badge-secondary">Module 3</span>
             <h1>Marks & Attendance Analysis</h1>
             <p class="subtitle">Enter subject-wise marks and attendance percentage to analyze performance and pass/fail status.</p>
         </header>
